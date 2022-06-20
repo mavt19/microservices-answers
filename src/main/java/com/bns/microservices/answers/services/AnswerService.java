@@ -8,5 +8,9 @@ public interface AnswerService {
 	
 	public Iterable<Answer> findAnswerByStudentAndByExam(Long studentId, Long examId); 
 	
+	public Iterable<Answer> findAnswerByStudentAndByQuestionIds(Long studentId, Iterable<Long> examIds); 
+	
 	public Iterable<Long> findAnswerIdWithAnswersByStudent(Long studentId); 
+	
+	public Iterable<Answer> findAnswerByStudentId(Long studentId); 
 }

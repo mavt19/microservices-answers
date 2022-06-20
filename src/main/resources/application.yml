@@ -11,17 +11,25 @@ spring:
   application:
     name: microservices-answers
       
-  datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/db_microservices
-    username: root
-    password: sa
-  jpa:
-    database-platform: org.hibernate.dialect.MariaDB103Dialect
-    hibernate.ddl-auto: update
-    generate-ddl: true
-    show-sql: true
-    
+#  datasource:
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/db_microservices
+#    username: root
+#    password: sa
+#  jpa:
+#    database-platform: org.hibernate.dialect.MariaDB103Dialect
+#    hibernate.ddl-auto: update
+#    generate-ddl: true
+#    show-sql: true
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/db_microservices_answers
+#      authentication-database: admin
+#      username: root
+#      password: root
+#      database: test_db
+#      port: 27017
+#      host: localhost    
 logging:
   level:
     org:

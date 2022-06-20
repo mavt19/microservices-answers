@@ -1,5 +1,8 @@
 package com.bns.microservices.answers.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +24,16 @@ public class AnswerController {
 	
 	@PostMapping
 	public ResponseEntity<?> save(@RequestBody Iterable<Answer> answers){
-		
-		Iterable<Answer> answersDB = answerService.saveAll(answers);
+		List<Answer>listAnswers = (List<Answer>) answers;
+		listAnswers.stream()
+		.map(a -> {
+			a.setStudentId(a.getStudent().getId());
+			a.setQuestionId(a.getQuestion().getId());
+			return a;
+		})
+		.toList();
+		Iterable<Answer> answersDB = answerService.saveAll(listAnswers);
+		System.out.println(listAnswers); 
 		return ResponseEntity.status(HttpStatus.CREATED).body(answersDB);
 	}
 	
@@ -34,7 +45,7 @@ public class AnswerController {
 	
 	@GetMapping("/student/{studentId}/exams-answered")
 	public ResponseEntity<?> getAnswerIdWithAnswersByStudent(@PathVariable("studentId") Long studentId){
-		Iterable<Long> answersIdListDb = answerService.findAnswerIdWithAnswersByStudent(studentId);
+		List<Long> answersIdListDb = (List<Long>) answerService.findAnswerIdWithAnswersByStudent(studentId);
 		return ResponseEntity.ok(answersIdListDb);
 	}
 }
