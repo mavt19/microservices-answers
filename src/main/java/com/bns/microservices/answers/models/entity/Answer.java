@@ -1,33 +1,32 @@
 package com.bns.microservices.answers.models.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(name = "answers")
-@Entity
-@Data
+@Document(collection  = "answers")
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Answer {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private String id;
 	@NotEmpty
 	private String text;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@Transient
 	private Student student;
-	@OneToOne(fetch = FetchType.LAZY)
+	
+	private Long studentId;
+	
+	@Transient
 	private Question question;
+	
+	private Long questionId;
 }
