@@ -39,13 +39,15 @@ public class AnswerController {
 	
 	@GetMapping("/student/{studentId}/exam/{examId}")
 	public ResponseEntity<?> getAnswerByStudentAndByExam(@PathVariable("studentId") Long studentId, @PathVariable("examId") Long examId){
-		Iterable<Answer> answersListDb = answerService.findAnswerByStudentAndByExam(studentId, examId);
+//		Iterable<Answer> answersListDb = answerService.findAnswerByStudentAndByExam(studentId, examId);
+		Iterable<Answer> answersListDb = answerService.findAnswerByStudentIdAndExamId(studentId, examId);
 		return ResponseEntity.ok(answersListDb);
 	}
 	
 	@GetMapping("/student/{studentId}/exams-answered")
 	public ResponseEntity<?> getAnswerIdWithAnswersByStudent(@PathVariable("studentId") Long studentId){
-		List<Long> answersIdListDb = (List<Long>) answerService.findAnswerIdWithAnswersByStudent(studentId);
+//		List<Long> answersIdListDb = (List<Long>) answerService.findAnswerIdWithAnswersByStudent(studentId);
+		List<Long> answersIdListDb = (List<Long>) answerService.findExamIdsWithAnswersByStudentId(studentId);
 		return ResponseEntity.ok(answersIdListDb);
 	}
 }

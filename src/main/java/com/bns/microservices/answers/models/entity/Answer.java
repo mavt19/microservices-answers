@@ -20,12 +20,12 @@ public class Answer {
 	private String id;
 	@NotEmpty
 	private String text;
-	@Transient
+//	@Transient
 	private Student student;
 	
 	private Long studentId;
 	
-	@Transient
+//	@Transient
 	private Question question;
 	
 	private Long questionId;

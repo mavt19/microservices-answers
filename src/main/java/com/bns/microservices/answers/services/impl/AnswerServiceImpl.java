@@ -76,4 +76,17 @@ public class AnswerServiceImpl implements AnswerService{
 		return answerRepository.findAnswerIdWithAnswersByStudent(studentId);
 	}
 
+	@Override
+	public Iterable<Answer> findAnswerByStudentIdAndExamId(Long studentId, Long examId) {
+		// TODO Auto-generated method stub
+		return answerRepository.findAnswerByStudentIdAndExamId(studentId, examId);
+	}
+
+	@Override
+	public Iterable<Long> findExamIdsWithAnswersByStudentId(Long studentId) {
+		// TODO Auto-generated method stub
+		List<Answer> answersStudent = (List<Answer>) answerRepository.findAnswerIdWithAnswersByStudentId(studentId);
+		return answersStudent.stream().map(r-> r.getQuestion().getExam().getId()).distinct().toList();
+	}
+
 }

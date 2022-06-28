@@ -13,4 +13,8 @@ public interface AnswerService {
 	public Iterable<Long> findAnswerIdWithAnswersByStudent(Long studentId); 
 	
 	public Iterable<Answer> findAnswerByStudentId(Long studentId); 
+	
+	public Iterable<Answer> findAnswerByStudentIdAndExamId(Long studentId, Long examId);
+	
+	public Iterable<Long> findExamIdsWithAnswersByStudentId(Long studentId); 
 }
